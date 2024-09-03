@@ -16,7 +16,7 @@ class TodoApp:
     def create_task(self, task_name: str, due_date: str = None, reminder: str = None):
         task = Task(task_name, due_date, reminder)
         self.tasks.append(task)
-        print(f"Task '{task_name}' created successfully!")
+        print(f"Task '{task_name}' created successfully! Don't forget to complete it ")
 
     def update_task(self, task_index: int, new_task_name: str = None, due_date: str = None, reminder: str = None):
         if task_index < len(self.tasks):
