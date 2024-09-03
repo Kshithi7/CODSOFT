@@ -1,3 +1,15 @@
 # CODSOFT
-Hello! The projects related to the virtual internship will be available in here
-## I have choosen Python programming 
+Hello! **Kshithi** here :smile:
+I'm an Electronics and Communication engineering student 🛰️
+Aspiring cybersecurity analyst too 🤔
+Hobbies 🎨: Reading,Sketching
+## Projects
+  The projects  🖇️ in python related to the virtual internship will be available in here:
+  1. To-do list 📝: 
+  2. calculator 💬 :
+  3. Password generator ㊙️:
+  4. Rock-Paper-Scissors game 🎲:
+  5. Contact book 📑:
+# Hope you find this helpful 👍
+
+
