@@ -5,6 +5,7 @@ Building an all-inclusive to-do list application :memo: with built-in reminder f
 * Create command-line 🖋️ to create, update and track to-do tasks efficiently and easily.
 * Manage 📑 and organize the tasks orderly.
 ## Walkthrough ⌨️
+ 
 ## Challenges
 ## Learnings
 ## Improvements
