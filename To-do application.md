@@ -4,7 +4,7 @@ Building an all-inclusive to-do list application :memo: with built-in reminder f
 * Build a simple to-do list📱using python.
 * Create command-line 🖋️ to create, update and track to-do tasks efficiently and easily.
 * Manage 📑 and organize the tasks orderly.
-## Walkthrough ( )⌨️
+## [Walkthrough](https://github.com/Kshithi7/CODSOFT/blob/main/to-do.py )⌨️
 Creating tasks with title, duedate and remainder -> Setting a remainder to complete the task -> Updating the tasks -> Deleting the tasks -> View the tasks created
 ## Challenges 🤔
 * Handling various user inputs, such as incorrect date formats ❗ or invalid task indices .
