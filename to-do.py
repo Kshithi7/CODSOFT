@@ -1,79 +1,55 @@
-import datetime
-import time
-import threading
-
+import datetime  # manipulate date and time
+import threading # to run statements simultaneously
+ 
+# define parameters of a task
 class Task:
-    def __init__(self, name: str, due_date: str = None, reminder: str = None):
+    def __init__(self, name: str, due_date: str = None):
         self.name = name
         self.due_date = due_date
-        self.reminder = reminder
         self.completed = False
 
+# design a to-do application
 class TodoApp:
     def __init__(self):
         self.tasks = []
 
-    def create_task(self, task_name: str, due_date: str = None, reminder: str = None):
-        task = Task(task_name, due_date, reminder)
+# create task
+    def create_task(self, task_name: str, due_date: str = None):
+        task = Task(task_name, due_date)
         self.tasks.append(task)
         print(f"Task '{task_name}' created successfully! Don't forget to complete it ")
 
-    def update_task(self, task_index: int, new_task_name: str = None, due_date: str = None, reminder: str = None):
-        if task_index < len(self.tasks):
+# update the status of the tasks
+    def update_task(self, task_index: int, new_task_name: str = None, due_date: str = None):
+        if 0 <= task_index < len(self.tasks):
             task = self.tasks[task_index]
             if new_task_name:
                 task.name = new_task_name
             if due_date:
                 task.due_date = due_date
-            if reminder:
-                task.reminder = reminder
             print(f"Task '{task.name}' updated successfully!")
         else:
             print("Invalid task index.")
 
+# delete completed tasks
     def delete_task(self, task_index: int):
-        if task_index < len(self.tasks):
+        if 0 <= task_index < len(self.tasks):
             del self.tasks[task_index]
             print("Task deleted successfully!")
         else:
             print("Invalid task index.")
 
+# display on due tasks
     def display_tasks(self):
         print("\nYour To-do List:")
         for i, task in enumerate(self.tasks, start=1):
             status = "Completed" if task.completed else "Not Completed"
             due_date = task.due_date if task.due_date else "No Due Date"
-            reminder = task.reminder if task.reminder else "No Reminder"
-            print(f"{i}. {task.name} - {status} - Due Date: {due_date} - Reminder: {reminder}")
-
-class ReminderService:
-    def __init__(self, todo_app: TodoApp):
-        self.todo_app = todo_app
-        self.reminders = []
-
-    def set_reminder(self, task_index: int, reminder_time: str):
-        if task_index < len(self.todo_app.tasks):
-            task = self.todo_app.tasks[task_index]
-            task.reminder = reminder_time
-            self.reminders.append((task_index, reminder_time))
-            print(f"Reminder set for task '{task.name}' at {reminder_time}!")
-        else:
-            print("Invalid task index.")
-
-    def check_reminders(self):
-        while True:
-            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-            for task_index, reminder_time in list(self.reminders):  # Use list() to avoid runtime errors due to removal
-                if current_time >= reminder_time:
-                    task = self.todo_app.tasks[task_index]
-                    print(f"Reminder: Task '{task.name}' is due!")
-                    self.reminders.remove((task_index, reminder_time))
-            time.sleep(60)
+            print(f"{i}. {task.name} - {status} - Due Date: {due_date}")
 
 class CommandLineInterface:
-    def __init__(self, todo_app: TodoApp, reminder_service: ReminderService):
+    def __init__(self, todo_app: TodoApp):
         self.todo_app = todo_app
-        self.reminder_service = reminder_service
 
     def run(self):
         while True:
@@ -83,37 +59,39 @@ class CommandLineInterface:
             print("3. Delete Task")
             print("4. Display Tasks")
             print("5. Complete Task")
-            print("6. Set Reminder")
-            print("7. Quit")
+            print("6. Quit")
             choice = input("Enter your choice: ")
             if choice == "1":
                 task_name = input("Enter task name: ")
                 due_date = input("Enter due date (YYYY-MM-DD): ")
-                reminder = input("Enter reminder time (YYYY-MM-DD HH:MM): ")
-                self.todo_app.create_task(task_name, due_date, reminder)
+                self.todo_app.create_task(task_name, due_date)
             elif choice == "2":
-                task_index = int(input("Enter task index to update: ")) - 1
-                new_task_name = input("Enter new task name: ")
-                due_date = input("Enter due date (YYYY-MM-DD): ")
-                reminder = input("Enter reminder time (YYYY-MM-DD HH:MM): ")
-                self.todo_app.update_task(task_index, new_task_name, due_date, reminder)
+                try:
+                    task_index = int(input("Enter task index to update: ")) - 1
+                    new_task_name = input("Enter new task name: ")
+                    due_date = input("Enter due date (YYYY-MM-DD): ")
+                    self.todo_app.update_task(task_index, new_task_name, due_date)
+                except ValueError:
+                    print("Invalid input. Please enter a valid task index.")
             elif choice == "3":
-                task_index = int(input("Enter task index to delete: ")) - 1
-                self.todo_app.delete_task(task_index)
+                try:
+                    task_index = int(input("Enter task index to delete: ")) - 1
+                    self.todo_app.delete_task(task_index)
+                except ValueError:
+                    print("Invalid input. Please enter a valid task index.")
             elif choice == "4":
                 self.todo_app.display_tasks()
             elif choice == "5":
-                task_index = int(input("Enter task index to complete: ")) - 1
-                if 0 <= task_index < len(self.todo_app.tasks):
-                    self.todo_app.tasks[task_index].completed = True
-                    print(f"Task '{self.todo_app.tasks[task_index].name}' marked as completed!")
-                else:
-                    print("Invalid task index.")
+                try:
+                    task_index = int(input("Enter task index to complete: ")) - 1
+                    if 0 <= task_index < len(self.todo_app.tasks):
+                        self.todo_app.tasks[task_index].completed = True
+                        print(f"Task '{self.todo_app.tasks[task_index].name}' marked as completed!")
+                    else:
+                        print("Invalid task index.")
+                except ValueError:
+                    print("Invalid input. Please enter a valid task index.")
             elif choice == "6":
-                task_index = int(input("Enter task index to set reminder: ")) - 1
-                reminder_time = input("Enter reminder time (YYYY-MM-DD HH:MM): ")
-                self.reminder_service.set_reminder(task_index, reminder_time)
-            elif choice == "7":
                 print("Exiting the application. Goodbye!")
                 break
             else:
@@ -121,11 +99,6 @@ class CommandLineInterface:
 
 if __name__ == "__main__":
     todo_app = TodoApp()
-    reminder_service = ReminderService(todo_app)
-
-    # Start the reminder check in a separate thread
-    reminder_thread = threading.Thread(target=reminder_service.check_reminders, daemon=True)
-    reminder_thread.start()
-
-    cli = CommandLineInterface(todo_app, reminder_service)
+    cli = CommandLineInterface(todo_app)
     cli.run()
+
