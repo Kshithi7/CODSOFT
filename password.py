@@ -1,21 +1,22 @@
-import random 
-import string
+import random # to randonly select the letters/characters
+import string # to call predefined set of characters
 
-def create_password(length, include_letters=True, include_numbers=True, include_symbols=True):
-    # Initialize an empty string to hold the selected characters
+#defining the main function of the code
+def create_password(length, letters=True, numbers=True, symbols=True):
+    #Declare a empty string to hold the selected characters
     char_pool = ''
     
     # Add letters to the string
-    if include_letters:
-        char_pool += string.ascii_letters
+    if letters:
+        char_pool += string.ascii_letters # ascii leters are predefined in the module
     
     # Add digits to the string
-    if include_numbers:
-        char_pool += string.digits
+    if numbers:
+        char_pool += string.digits # predefined set of character in the string module
     
     # Add punctuation to the string
-    if include_symbols:
-        char_pool += string.punctuation
+    if symbols:
+        char_pool += string.punctuation #call the predefined function from string module
 
     # Ensure at least one of above options is selected
     if not char_pool:
@@ -26,13 +27,13 @@ def create_password(length, include_letters=True, include_numbers=True, include_
     return password
 
 # Get user input for password length and character preferences
-pwd_length = int(input("Enter the desired password length: "))
-use_letters = input("Include letters? (yes/no): ").lower() == 'yes'
-use_numbers = input("Include numbers? (yes/no): ").lower() == 'yes'
-use_symbols = input("Include symbols? (yes/no): ").lower() == 'yes'
+length = int(input("How long should be your paasword ?: "))
+letters = input("Include letters? (yes/no): ").lower() == 'yes'
+numbers = input("Include numbers? (yes/no): ").lower() == 'yes'
+symbols = input("Include symbols? (yes/no): ").lower() == 'yes'
 
 # Generate the password based on user preferences
-generated = create_password(pwd_length, use_letters, use_numbers, use_symbols)
+generated = create_password(length, letters, numbers, symbols)
 
 # Display the generated password
 print("Generated Password:", generated)
