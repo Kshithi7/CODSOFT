@@ -14,8 +14,8 @@ A simple application that serves as a contact book 📲 with saved important con
 * Ensure that the contact data is saved :dependabot: and loaded between sessions.
 * Checking for empty fields :x: and ensuring phone numbers are in the correct format.
 ## Learnings 📑
-> Working with lists and dictionaries to store 🗃️ and manage contact information.
-> Fundamental Python programming concepts such as functions, loops➿, and conditionals.
+- Working with lists and dictionaries to store 🗃️ and manage contact information.
+-  Fundamental Python programming concepts such as functions, loops➿, and conditionals.
 ## Improvements 📓
 Improving the search functionality to support partial matches and case-insensitive searches 🔠.
 ##  Improvements in this code makes this application a more robust,user-friendly contact book application and easier to find and manage contacts efficiently 🔃.
