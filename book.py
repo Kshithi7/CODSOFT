@@ -1,3 +1,5 @@
+
+
 def add_contact(contacts):
     name = input("Enter name: ")
     phone = input("Enter phone number: ")
