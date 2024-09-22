@@ -1,21 +1,25 @@
+# Display the in-app messages
+print("Welcome to your contact book")
+print("Here you can create and save contacts")
+print("Choose any of the below options to start with your contact books")
 
-
-def add_contact(contacts):
+# Add new contacts to memory of contact book 
+def add(contacts):
     name = input("Enter name: ")
     phone = input("Enter phone number: ")
     email = input("Enter email: ")
     address = input("Enter address: ")
-    contacts.append({'name': name, 'phone': phone, 'email': email, 'address': address})
+    contacts.append({'name': name, 'phone': phone, 'email': email, 'address': address}) # attach details to contact
     print(f"Contact {name} added successfully.")
 
-def display_contacts(contacts):
-    if not contacts:
+def display(contacts):                      # display saveed contacts
+    if not contacts:                                 # empty memory/no saved contacts
         print("No contacts found.")
     else:
-        for contact in contacts:
+        for contact in contacts:                         
             print(f"Name: {contact['name']}, Phone: {contact['phone']}")
 
-def search_contact(contacts):
+def search(contacts):
     search_term = input("Enter name or phone to search: ")
     results = [contact for contact in contacts if search_term in contact['name'] or search_term in contact['phone']]
     if not results:
@@ -24,7 +28,7 @@ def search_contact(contacts):
         for contact in results:
             print(f"Name: {contact['name']}, Phone: {contact['phone']}, Email: {contact['email']}, Address: {contact['address']}")
 
-def update_contact(contacts):
+def update(contacts):
     name = input("Enter name of the contact to update: ")
     for contact in contacts:
         if contact['name'] == name:
@@ -35,7 +39,7 @@ def update_contact(contacts):
             return
     print(f"Contact {name} not found.")
 
-def delete_contact(contacts):
+def delete(contacts):
     name = input("Enter name of the contact to delete: ")
     for contact in contacts:
         if contact['name'] == name:
@@ -56,15 +60,15 @@ def main():
         print("6. Exit")
         choice = input("Enter your choice: ")
         if choice == '1':
-            add_contact(contacts)
+            add(contacts)
         elif choice == '2':
-            display_contacts(contacts)
+            display(contacts)
         elif choice == '3':
-            search_contact(contacts)
+            search(contacts)
         elif choice == '4':
-            update_contact(contacts)
+            update(contacts)
         elif choice == '5':
-            delete_contact(contacts)
+            delete(contacts)
         elif choice == '6':
             break
         else:
