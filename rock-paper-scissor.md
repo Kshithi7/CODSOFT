@@ -14,8 +14,8 @@ A simulation of rock-paper-scissor game 2️⃣.
 * Implementing a fair and unbiased random choice generator 🎲 for the computer.
 * Keeping an accurate count of the scores 🧮 across multiple rounds.
 ## Learnings 📑
-  Understanding of basic Python concepts such as loops 🔁, conditionals , and functions.
-   Use of 'random' module to generate random choices🎲.
+* Understanding of basic Python concepts such as loops 🔁, conditionals , and functions.
+* Use of 'random' module to generate random choices🎲.
 ## Improvements 📓
 Adding more features such as a leaderboard 🏅, different difficulty levels, or additional game modes.
 ##  The project highlights the importance of  input validation and offers enhanced user interaction and feedback mechanisms
